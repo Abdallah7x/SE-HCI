@@ -16,7 +16,8 @@ class Users{
       $conn  = $connectionToDatabase->ConnectToDataBase();
       $query = "INSERT INTO users (`userID`,`fname`,`mname`,`lname`,`email`,`phoneNo`,`age`,`gender`,`usertypeID`,`Status`)
       VALUES (null,'$this->userFName','$this->userMName','$this->userLName','$this->email','$this->phoneNo','$this->Age','$this->Gender','$this->UserType',1)";
-      $result= mysqli_query($conn,$query);
+      echo $query;
+     $result= mysqli_query($conn,$query);
       return $result;
     }
 
@@ -82,7 +83,7 @@ class Users{
     public function acceptAddmission($userID,$UserType,$UserName,$Password){
       $connectionToDatabase =  new connectionToDatabase;
       $conn  = $connectionToDatabase->ConnectToDataBase();
-      $query = "INSERT INTO login (`studentID`,`username`,`password`,`userid`)
+      $query = "INSERT INTO login (`loginID`,`username`,`password`,`userid`)
       VALUES (null,'$UserName','$Password','$userID')";
       $result= mysqli_query($conn,$query);
       $query = "UPDATE users SET Status = '2',usertypeID='$UserType' WHERE userID = '$userID'";
@@ -119,8 +120,9 @@ class Users{
     public function updateUser($userID,$userFName,$userMName,$userLName,$email,$phoneNo,$Age){
       $connectionToDatabase =  new connectionToDatabase;
       $conn  = $connectionToDatabase->ConnectToDataBase();
-      $query = "UPDATE users SET userFName='{$userFName}' ,userMName='{$userMName}' ,userLName='{$userLName}',email='{$email}',phoneNo='{$phoneNo}',Age='{$Age}' WHERE userID = '{$userID}'";
-       mysqli_query($conn,$query);
+      $query = "UPDATE users SET fname='{$userFName}' ,mname='{$userMName}' ,lname='{$userLName}',email='{$email}',phoneNo='{$phoneNo}',age='{$Age}' WHERE userID = '{$userID}'";
+     
+      mysqli_query($conn,$query);
     }
 
 }
