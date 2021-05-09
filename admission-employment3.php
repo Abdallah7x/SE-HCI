@@ -1,3 +1,6 @@
+<?php
+REQUIRE_ONCE "../classes/users.php";
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +45,7 @@
     <input class="text" type="email" id="lname" name="email" placeholder="Example" required><br>
  
 
-    <b><input class="mission12" type="submit" value ="SUBMIT"></b>
+    <b><input class="mission12" name='butsub' type="submit" value ="SUBMIT"></b>
 </form>
 
     </div>
@@ -91,7 +94,7 @@
 </html>
 
 <?php
-if ($_POST){
+if (isset($_POST['butsub'])){
 $Users = new Users;
 $Users->userFName=$_GET["fname"];
 $Users->userMName=$_GET["mname"];
