@@ -78,7 +78,5 @@ $_SESSION["name"]=$row['fname']." ".$row['mname']." ".$row['lname'];
 $_SESSION['userID']=$row['userID'];
 echo $row["PageName"];
 header("Location: ".$row["PageName"]);
-
-
 }
 ?>
