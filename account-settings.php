@@ -1,77 +1,131 @@
 <?php
-REQUIRE_ONCE "../classes/users.php";
-$Users = new Users;
-session_start();
-$userid=$_SESSION['userID'];
-if($_POST && $_POST['password']==$_POST['conpass'])
-{ $result =$Users->updateUser($userid,$_POST['fname'],$_POST['mname'],$_POST['lname'],$_POST['email'],$_POST['phone'],$_POST['age']);
+REQUIRE_ONCE ("connectionToDataBase.php");
+class Users{
+    public $userID;
+    public $userFName;
+    public $userMName;
+    public $userLName;
+    public $email;
+    public $phoneNo;
+    public $Age;
+    public $Gender;
+    public $UserType;
 
-$_SESSION["name"]=$_POST['fname']." ".$_POST['mname']." ".$_POST['lname'];
+    public function AddUsers(){
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "INSERT INTO users (`userID`,`fname`,`mname`,`lname`,`email`,`phoneNo`,`age`,`gender`,`usertypeID`,`Status`)
+      VALUES (null,'$this->userFName','$this->userMName','$this->userLName','$this->email','$this->phoneNo','$this->Age','$this->Gender','$this->UserType',1)";
+      echo $query;
+     $result= mysqli_query($conn,$query);
+      return $result;
+    }
+
+    public function login($username,$password){
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "SELECT * from users INNER JOIN login  ON (login.userid = users.userID) INNER JOIN usertype ON (usertype.usertypeID = users.usertypeID) INNER JOIN Pages
+       ON (Pages.PageID = usertype.PageID) where login.username = '$username' and login.password='$password'";
+      $result= mysqli_query($conn,$query);
+      return $result;
+    }
+
+    public function viewAllUsers(){
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "SELECT * from users";
+      $result= mysqli_query($conn,$query);
+      return $result;
+    }
+
+    public function viewPendingUsers(){
+      #view new students(pending)
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "SELECT * from users where Status = 1 and userTypeID = 2";
+      $result= mysqli_query($conn,$query);
+      return $result;
+    }
+
+    public function viewAcceptedUsers(){
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "SELECT * from users where Status = 2";
+      $result= mysqli_query($conn,$query);
+      return $result;
+    }
+
+    public function viewSpecificUserType(){
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "SELECT * from users where usertypeID = '$this->UserType'";
+      $result= mysqli_query($conn,$query);
+      return $result;
+    }
+
+    
+    public function GetUserType(){
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "SELECT * from users INNER JOIN login  ON (login.userid = users.userID) INNER JOIN usertype ON (usertype.usertypeID = users.usertypeID) ";
+      $result= mysqli_query($conn,$query);
+      return $result;
+    }
+
+    public function viewSpecificUser($UserID){
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "SELECT * from users where userID = '$UserID'";
+      $result= mysqli_query($conn,$query);
+      return $result;
+    }
+
+    public function acceptAddmission($userID,$UserType,$UserName,$Password){
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "INSERT INTO login (`loginID`,`username`,`password`,`userid`)
+      VALUES (null,'$UserName','$Password','$userID')";
+      $result= mysqli_query($conn,$query);
+      $query = "UPDATE users SET Status = '2',usertypeID='$UserType' WHERE userID = '$userID'";
+      $result= mysqli_query($conn,$query);
+
+    }
+
+    public function declineAddmission($userID){
+    $connectionToDatabase =  new connectionToDatabase;
+    $conn  = $connectionToDatabase->ConnectToDataBase();
+    $query = "DELETE FROM users WHERE userID = '$userID'";
+    $result= mysqli_query($conn,$query);
+
+    }
+
+    public function viewPendingEUsers(){
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "SELECT * from users where Status = 1 and userTypeID = 5";
+      $result= mysqli_query($conn,$query);
+      return $result;
+
+    }
+
+    public function viewallUserType($UserType){
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "SELECT * from users where Status = 2 and userTypeID = '$UserType'";
+      $result= mysqli_query($conn,$query);
+      return $result;
+
+    }
+
+    public function updateUser($userID,$userFName,$userMName,$userLName,$email,$phoneNo,$Age){
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "UPDATE users SET fname='{$userFName}' ,mname='{$userMName}' ,lname='{$userLName}',email='{$email}',phoneNo='{$phoneNo}',age='{$Age}' WHERE userID = '{$userID}'";
+     
+      mysqli_query($conn,$query);
+    }
+
 }
+
+
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="stylesheet.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-<title>Sharm El-Sheikh School - admin</title>
-</head>
-<body>
-
-<div class="sidetab" id="myTopnav">
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-       <i class="fa fa-bars"></i>
-     </a>
-  <div class="admintitle">
-  <?php include 'nav.php';?>
-  </div>
-  </div>
-
-</div>
-   <div class="tablev" style="top: 3px;left: 235px; width:100%; height:100%;">
-
-  <img src="bgimage.jpg" style="height:100%;" class="bgimage">
-  
-  <div class="opacity" style="width: 985px;top: 30px;left: 10%; height:97%;">
-    <div class="divideall"style="width: 985px;top: 150px;left: 252px; height:100%;">
-    <div style="width: 985px;top: 150px;left: 252px; height:100%;">
-      <p class="mistext" style="font-size: 30px;font-weight: bold;color:black;">Account Settings</p>
-  <form method="post" style="width: 985px;top: 150px;left: 252px; font-size: 20px;">
-    <label for="fname">First name:</label><br>
-    <input type="text" id="fname" name="fname" placeholder="Example" required><br>
-    <label for="lname">Middle name:</label><br>
-    <input type="text" id="lname" name="mname" placeholder="Example" required><br>
-    <label for="fname">Last name:</label><br>
-    <input type="text" id="fname" name="lname" placeholder="Example" required><br>
-    <label for="lname">Phone number:</label><br>
-    <input type="text" id="lname" name="phone" placeholder="Example" required><br>
-    <label for="fname">Age:</label><br>
-    <input type="text" id="fname" name="age" placeholder="Example"required><br>
-    <label for="fname">Email:</label><br>
-    <input type="email" id="fname" name="email" placeholder="Example"required><br>
-    <label for="lname">Password:</label><br>
-    <input type="text" id="lname" name="password" placeholder="Example"required><br>
-    <label for="fname">Confirmation Password:</label><br>
-    <input type="text" id="fname" name="conpass" placeholder="Example" required><br>
-  <b><input class="mission12" type="submit" value ="NEXT"></b>
-</form>
-
-
-<script>
-function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "sidetab") {
-    x.className += " responsive";
-  } else {
-    x.className = "sidetab";
-  }
-}
-</script>
-
-</body>
-</html>
