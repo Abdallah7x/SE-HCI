@@ -11,15 +11,16 @@
 </head>
 <body>
   <div class="topnav" id="myTopnav">
-    <img src="logo.png" class="logo">
-    <a href="#home">Portal</a>
-    <a href="#news">Employment</a>
-    <a href="#home" id="active">Admission</a>
-    <a href="#news">School Life</a>
-    <a href="#contact">News/Events</a>
-    <a href="#about">About Us</a>
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-      <i class="fa fa-bars"></i>
+  <a href="index.html" style="float:left; "> <img src="logo.png" class="logo"></a>
+  <a href="login.php">Portal</a>
+  <a href="admission-employment2.php" >Employment</a>
+  <a href="newstudents2.php" id="active">Admission</a>
+  <a href="#news">School Life</a>
+  <a href="#contact">News/Events</a>
+  <a href="about.html">About Us</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
     </a>
   </div>
   <img src="bgimage.jpg" class="bgimage">
@@ -40,31 +41,34 @@
 
     <div class="form1">
       <p class="mistext"><b>Admission<br><br>PLease fill the form below</b></p>
-  <form action="admission22.php">
+  <form action="newstudents3.php">
     <label class="label1" for="fname">First name:</label><br>
-    <input class="input1" type="text" id="fname" name="fname" value="Example"><br>
+    <input class="input1" type="text" id="fname" name="fname" placeholder="Example" required><br>
     <label class="label1" for="lname">Middle name:</label><br>
-    <input class="input1" type="text" id="lname" name="lname" value="Example"><br>
+    <input class="input1" type="text" id="lname" name="mname" placeholder="Example" required><br>
     <label class="label1" for="fname">Last name:</label><br>
-    <input class="input1" type="text" id="fname" name="fname" value="Example"><br>
+    <input class="input1" type="text" id="fname" name="lname" placeholder="Example" required><br>
     <label class="label1" for="lname">Phone number:</label><br>
-    <input class="input1" type="text" id="lname" name="lname"><br>
+    <input class="input1" type="text" id="lname" name="phoneNumer" placeholder="Example" required><br>
     <label class="label1" for="fname">Age:</label><br>
-    <input class="input1" type="text" id="fname" name="fname"><br>
-    <b><input style="margin-left: 230px;"class="mission12" type="submit" value ="NEXT"></b>
-  </form>
-
-    <!-- <div class="mission12">
-    <b>Next</b>
-    </div> -->
+    <input class="input1" type="text" id="fname" name="age" placeholder="Example" required><br>
+    <b><input class="mission12" type="submit" value ="NEXT"></b>
+</form>
     </div>
 
 
     </div>
+
+
 
 
 
   </div>
+
+
+
+
+
 
 
   <script>
