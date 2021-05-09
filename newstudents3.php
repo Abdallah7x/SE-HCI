@@ -14,16 +14,17 @@ REQUIRE_ONCE "../classes/users.php";
 </head>
 <body>
   <div class="topnav" id="myTopnav">
-    <img src="logo.png" class="logo">
-    <a href="#home">Portal</a>
-    <a href="#news">Employment</a>
-    <a href="#home" id="active">Admission</a>
-    <a href="#news">School Life</a>
-    <a href="#contact">News/Events</a>
-    <a href="#about">About Us</a>
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-      <i class="fa fa-bars"></i>
-    </a>
+
+  <a href="index.html" style="float:left; "> <img src="logo.png" class="logo"></a>
+  <a href="login.php">Portal</a>
+  <a href="admission-employment2.php" >Employment</a>
+  <a href="newstudents2.php" id="active">Admission</a>
+  <a href="#news">School Life</a>
+  <a href="#contact">News/Events</a>
+  <a href="about.html">About Us</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
   </div>
   <img src="bgimage.jpg" class="bgimage">
   <div class="opacity">
@@ -43,20 +44,17 @@ REQUIRE_ONCE "../classes/users.php";
 
     <div class="form1">
       <p class="mistext"><b>Admission<br><br>PLease fill the form below</b></p>
-  <form action="/action_page.php">
+  <form method="POST">
     <label class="label1" for="fname">Gender:</label><br>
-    <input class="input1" type="text" id="fname" name="fname"><br>
+   
+    <select  class="input1"name ="gender">
+      <option value="M">Male</option>
+      <option value="F">Female</option>
+  </select><br>
     <label class="label1" for="lname">Email:</label><br>
-    <input class="input1" type="text" id="lname" name="lname"><br>
-    <label class="label1" for="fname">Password:</label><br>
-    <input class="input1" type="text" id="fname" name="fname"><br>
-    <label class="label1" for="lname">Confirm Password:</label><br>
-    <input class="input1" type="text" id="lname" name="lname"><br>
-  </form>
-
-    <div class="mission12">
-    <b>Submit</b>
-    </div>
+    <input class="input1" type="email" id="lname" name="email" placeholder="Example" required><br>
+    <b><input class="mission12" type="submit" value ="SUBMIT"></b>
+</form>
     </div>
 
 
@@ -85,7 +83,6 @@ REQUIRE_ONCE "../classes/users.php";
   </script>
 </body>
 </html>
-
 <?php
 if ($_POST){
 $Users = new Users;
