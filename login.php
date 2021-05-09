@@ -1,4 +1,8 @@
 
+<?php
+REQUIRE_ONCE "../classes/users.php";
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,6 +52,10 @@
 </div>
 
 
+
+
+
+
   <script>
   function myFunction() {
     var x = document.getElementById("myTopnav");
@@ -61,4 +69,16 @@
 </body>
 </html>
 
+<?php
+if ($_POST){
+$Users = new Users;
+$result = $Users->login($_POST["username"],$_POST["password"]);
+$row = mysqli_fetch_array($result);
+$_SESSION["name"]=$row['fname']." ".$row['mname']." ".$row['lname'];
+$_SESSION['userID']=$row['userID'];
+echo $row["PageName"];
+header("Location: ".$row["PageName"]);
 
+
+}
+?>
