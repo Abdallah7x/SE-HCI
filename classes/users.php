@@ -116,6 +116,16 @@ class Users{
       return $result;
 
     }
+    
+      public function contact(){
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "INSERT INTO contact (`id`,`name`,`email`,`number`,`enrolled`,`question`)
+      VALUES (null,'$this->name','$this->email','$this->number','$this->enrolled','$this->question')";
+      echo $query;
+     $result= mysqli_query($conn,$query);
+      return $result;
+    }
 
     public function updateUser($userID,$userFName,$userMName,$userLName,$email,$phoneNo,$Age){
       $connectionToDatabase =  new connectionToDatabase;
