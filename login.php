@@ -1,4 +1,12 @@
 
+
+<?php
+// REQUIRE_ONCE "../classes/users.php";
+include_once("../View/userView.php");
+$Userview = new ViewUsers;
+error_reporting(0);
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,46 +16,36 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-<title>Sharm El-Sheikh School - admission</title>
+<title>Sharm El-Sheikh School - Login</title>
 </head>
+<style>
+
+</style>
 <body>
-  <div class="topnav" id="myTopnav">
-    <img src="logo.png" class="logo">
-    <a href="#home" id="active">Portal</a>
-    <a href="#news">Employment</a>
-    <a href="#home">Admission</a>
-    <a href="#news">School Life</a>
-    <a href="#contact">News/Events</a>
-    <a href="#about">About Us</a>
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-      <i class="fa fa-bars"></i>
-    </a>
-  </div>
+<!-- <div class="topnav1" style="background-color: #08356a;" id="myTopnav">
+  <a href="index.html" style="float:left; "> <img src="logo.png" class="logo"></a>
+  <a href="login.php" id="active">Portal</a>
+  <a href="admission-employment2.php" >Employment</a>
+  <a href="newstudents2.php" >Admission</a>
+  <a href="about.php">About Us</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+   
+  </div> -->
+  <?php
+  $Userview->navigation();
+  ?>
+
   <img src="image2portal.jpg" class="bgimage">
 <div class="allholder">
-<img src="logo222.png" class="logoportal">
-<div class="form122">
-<form action="/action_page.php">
-  <br>
-<label class="label1" for="fname">Email:</label><br>
-<input class="input1" type="text" id="fname" name="fname"><br>
-<label class="label1" for="lname">Password:</label><br>
-<input class="input1" type="text" id="lname" name="lname"><br>
-
-</form>
-
-<div class="mission12">
-<b>Log In</b>
+<!-- <img src="logo222.png" class="logoportal">
+ --><div class="form122">
+<?php
+$Userview->loginForm();
+?>
 </div>
 </div>
-</div>
-
-
-
-
-
-
-
   <script>
   function myFunction() {
     var x = document.getElementById("myTopnav");
@@ -60,3 +58,4 @@
   </script>
 </body>
 </html>
+
