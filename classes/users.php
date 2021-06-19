@@ -16,11 +16,29 @@ class Users{
       $conn  = $connectionToDatabase->ConnectToDataBase();
       $query = "INSERT INTO users (`userID`,`fname`,`mname`,`lname`,`email`,`phoneNo`,`age`,`gender`,`usertypeID`,`Status`)
       VALUES (null,'$this->userFName','$this->userMName','$this->userLName','$this->email','$this->phoneNo','$this->Age','$this->Gender','$this->UserType',1)";
-      echo $query;
+      
+     $result= mysqli_query($conn,$query);
+      return $result;
+    }
+    public function contact(){
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "INSERT INTO contact (`id`,`name`,`email`,`number`,`enrolled`,`question`)
+      VALUES (null,'$this->name','$this->email','$this->number','$this->enrolled','$this->question')";
+      
      $result= mysqli_query($conn,$query);
       return $result;
     }
 
+    public function viewquestions(){
+      #view new students(pending)
+      $connectionToDatabase =  new connectionToDatabase;
+      $conn  = $connectionToDatabase->ConnectToDataBase();
+      $query = "SELECT * from contact ";
+      $result= mysqli_query($conn,$query);
+      return $result;
+    }
+    
     public function login($username,$password){
       $connectionToDatabase =  new connectionToDatabase;
       $conn  = $connectionToDatabase->ConnectToDataBase();
@@ -115,16 +133,6 @@ class Users{
       $result= mysqli_query($conn,$query);
       return $result;
 
-    }
-    
-      public function contact(){
-      $connectionToDatabase =  new connectionToDatabase;
-      $conn  = $connectionToDatabase->ConnectToDataBase();
-      $query = "INSERT INTO contact (`id`,`name`,`email`,`number`,`enrolled`,`question`)
-      VALUES (null,'$this->name','$this->email','$this->number','$this->enrolled','$this->question')";
-      echo $query;
-     $result= mysqli_query($conn,$query);
-      return $result;
     }
 
     public function updateUser($userID,$userFName,$userMName,$userLName,$email,$phoneNo,$Age){
