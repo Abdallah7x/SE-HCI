@@ -2,9 +2,12 @@
 <?php 
 
 REQUIRE_ONCE "../classes/connectionToDataBase.php";
-REQUIRE_ONCE "../classes/users.php";
- ?>
-   <?php 
+REQUIRE_ONCE "../Model/contact.php";
+// error_reporting(0);
+include_once("../View/userView.php");
+$Userview = new ViewUsers;
+$contact = new contact;
+$results = $contact->viewfreq();
 
 if(isset($_POST['subm'])){
 
@@ -47,45 +50,21 @@ header("Location:userfreq.php");
 </head>
 <!-- body -->
 <body>
-  
+  <div class="topnav" id="myTopnav">
+  <a href="index.html" style="float:left;"><img src="logo.png" class="logo"></a>
+  <a href="login.php">Portal</a>
+  <a href="admission-employment2.php" >Employment</a>
+  <a href="newstudents2.php">Admission</a>
+  <a href="about.php"  id="active">About Us</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+  </a>
   </div>
-  </div>
-  <div class="header">
-    <div class="container">
-        <!--  header inner -->
-            <div class="col-sm-12">
-                 
-                 <div class="menu-area">
-                    <nav class="navbar navbar-expand-lg ">
-                        <!-- <a class="navbar-brand" href="#">Menu</a> -->
-<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                       <i class="fa fa-bars"></i>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                           <ul class="navbar-nav mr-auto">
-                               <li class="nav-item active">
-                                <a class="nav-link" href="index.html">HOME<span class="sr-only">(current)</span></a> </li>
-                               <li class="nav-item">
-                                <a class="nav-link" href="about.html">About Us</a></li>
-                               <li class="nav-item">
-                                <a class="nav-link" href="news.html">News/Events</a></li>
-                               <li class="#" href="#">
-                                <a class="nav-link" href="life.html">School life</a></li>
-                               <li class="nav-item" href="#">
-                                <a class="nav-link" href="Admissions.html">Admissions</a></li>
-                                      <li class="nav-item" href="#">
-                                <a class="nav-link" href="emp.html">Employment</a></li>
-                                       <li class="nav-item" href="#">
-                                <a class="nav-link" href="portal.html">Portal</a></li>
-
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div> 
-    </div>
-
+  </div> 
+ <?php
+ // $Userview->navigation();
+  ?>
 
 
 
@@ -99,8 +78,7 @@ header("Location:userfreq.php");
         <div class="container">
           <div class="front" >
             <div class="inner">
-              <p>
-              ry</p>
+              <p>Library</p>
             </div>
           </div>
           <div class="back">
@@ -110,8 +88,7 @@ header("Location:userfreq.php");
           </div>
         </div>
       </div>
-
-
+     
 
 
 
@@ -147,7 +124,7 @@ header("Location:userfreq.php");
         </div>
       </div>
    
-        <div class="col" id="d2" ontouchstart="this.classList.toggle('hover');"onclick="openLightbox4();toSlide(1)" class="hover-shadow preview">
+        <div class="col" id="d" ontouchstart="this.classList.toggle('hover');"onclick="openLightbox4();toSlide(1)" class="hover-shadow preview">
         <div class="container">
           <div class="front" id="dd">
             <div class="inner">
@@ -200,13 +177,7 @@ header("Location:userfreq.php");
       </div>
   
 <div class="contform">
-  
-
-
-
 </div>
-
-
 
 <div class="contact_main" >
         <div class="container">
@@ -245,7 +216,7 @@ header("Location:userfreq.php");
                     <!--Grid column-->
                     <div class="col-md-6">
                         <div class="md-form mb-0">
-                            <input type="text" id="email" name="email" class="form-control">
+                            <input type="email" id="email" name="email" class="form-control">
                             <label for="email" class="">Your email</label>
                         </div>
                     </div>
@@ -296,17 +267,9 @@ header("Location:userfreq.php");
 </form>
  <form method="POST">
     <input type="submit"  name="subm" id="sub" value="View frequently asked Questions"> ;
-
     </form>
-                     
-
-
-
 </div>
-
-  
         </div>
-       
     
 
 </section>
@@ -387,13 +350,13 @@ header("Location:userfreq.php");
  <span class="close pointer" onclick="closeLightbox2()">&times;</span>
  <div class="modal-content">
   <div class="slide2">
-   <img src="c.jpg" class="image-slide" alt="lab1" id="jj" />
+   <img src="images/c.jpg" class="image-slide" alt="lab1" id="jj" />
   </div>
   <div class="slide"2>
-   <img src="c.jpg" class="image-slide" alt="lab2" />
+   <img src="images/c.jpg" class="image-slide" alt="lab2" />
   </div>
   <div class="slide"2>
-   <img src="c.jpg" class="image-slide" alt="lab3" />
+   <img src="images/c.jpg" class="image-slide" alt="lab3" />
   </div>
 
   <a class="previous" onclick="changeSlide(-1)">&#10094;</a>
@@ -401,13 +364,13 @@ header("Location:userfreq.php");
 
   <div class="dots">
    <div class="col">
-    <img src="c.jpg" class="modal-preview hover-shadow" onclick="toSlide(1)" alt="lab">
+    <img src="images/c.jpg" class="modal-preview hover-shadow" onclick="toSlide(1)" alt="lab">
    </div>
    <div class="col">
-    <img src="c.jpg" class="modal-preview hover-shadow" onclick="toSlide(2)" alt="lab2">
+    <img src="images/c.jpg" class="modal-preview hover-shadow" onclick="toSlide(2)" alt="lab2">
    </div>
    <div class="col">
-    <img src="c.jpg" class="modal-preview hover-shadow" onclick="toSlide(3)" alt="lab3">
+    <img src="images/c.jpg" class="modal-preview hover-shadow" onclick="toSlide(3)" alt="lab3">
    </div>
   </div>
  </div>
@@ -420,13 +383,13 @@ header("Location:userfreq.php");
  <span class="close pointer" onclick="closeLightbox3()">&times;</span>
  <div class="modal-content">
   <div class="slide2">
-   <img src="mus.jpg" class="image-slide" alt="mus1" id="k" />
+   <img src="images/mus.jpg" class="image-slide" alt="mus1" id="k" />
   </div>
   <div class="slide"2>
    <img src=".jpg" class="image-slide" alt="mus2" />
   </div>
   <div class="slide"2>
-   <img src="mus.jpg" class="image-slide" alt="mus3" />
+   <img src="images/mus.jpg" class="image-slide" alt="mus3" />
   </div>
 
   <a class="previous" onclick="changeSlide(-1)">&#10094;</a>
@@ -434,13 +397,13 @@ header("Location:userfreq.php");
 
   <div class="dots">
    <div class="col">
-    <img src="mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(1)" alt="mus1">
+    <img src="images/mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(1)" alt="mus1">
    </div>
    <div class="col">
-    <img src="mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(2)" alt="mus2">
+    <img src="images/mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(2)" alt="mus2">
    </div>
    <div class="col">
-    <img src="mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(3)" alt="mus3">
+    <img src="images/mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(3)" alt="mus3">
    </div>
   </div>
  </div>
@@ -451,13 +414,13 @@ header("Location:userfreq.php");
  <span class="close pointer" onclick="closeLightbox4()">&times;</span>
  <div class="modal-content">
   <div class="slide2">
-   <img src="mus.jpg" class="image-slide" alt="mus11" id="kk" />
+   <img src="images/mus.jpg" class="image-slide" alt="mus11" id="kk" />
   </div>
   <div class="slide"2>
    <img src=".jpg" class="image-slide" alt="mus22" />
   </div>
   <div class="slide"2>
-   <img src="mus.jpg" class="image-slide" alt="mus33" />
+   <img src="images/mus.jpg" class="image-slide" alt="mus33" />
   </div>
 
   <a class="previous" onclick="changeSlide(-1)">&#10094;</a>
@@ -465,13 +428,13 @@ header("Location:userfreq.php");
 
   <div class="dots">
    <div class="col">
-    <img src="mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(1)" alt="mus11">
+    <img src="images/mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(1)" alt="mus11">
    </div>
    <div class="col">
-    <img src="mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(2)" alt="mus22">
+    <img src="images/mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(2)" alt="mus22">
    </div>
    <div class="col">
-    <img src="mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(3)" alt="mus33">
+    <img src="images/mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(3)" alt="mus33">
    </div>
   </div>
  </div>
@@ -483,13 +446,13 @@ header("Location:userfreq.php");
  <span class="close pointer" onclick="closeLightbox5()">&times;</span>
  <div class="modal-content">
   <div class="slide2">
-   <img src="mus.jpg" class="image-slide" alt="mus111" id="l" />
+   <img src="images/mus.jpg" class="image-slide" alt="mus111" id="l" />
   </div>
   <div class="slide"2>
    <img src=".jpg" class="image-slide" alt="mus222" />
   </div>
   <div class="slide"2>
-   <img src="mus.jpg" class="image-slide" alt="mus333" />
+   <img src="images/mus.jpg" class="image-slide" alt="mus333" />
   </div>
 
   <a class="previous" onclick="changeSlide(-1)">&#10094;</a>
@@ -497,13 +460,13 @@ header("Location:userfreq.php");
 
   <div class="dots">
    <div class="col">
-    <img src="mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(1)" alt="mus111">
+    <img src="images/mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(1)" alt="mus111">
    </div>
    <div class="col">
-    <img src="mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(2)" alt="mus222">
+    <img src="images/mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(2)" alt="mus222">
    </div>
    <div class="col">
-    <img src="mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(3)" alt="mus333">
+    <img src="images/mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(3)" alt="mus333">
    </div>
   </div>
  </div>
@@ -514,13 +477,13 @@ header("Location:userfreq.php");
  <span class="close pointer" onclick="closeLightbox6()">&times;</span>
  <div class="modal-content">
   <div class="slide2">
-   <img src="mus.jpg" class="image-slide" alt="mus1111" id="ll" />
+   <img src="images/mus.jpg" class="image-slide" alt="mus1111" id="ll" />
   </div>
   <div class="slide"2>
    <img src=".jpg" class="image-slide" alt="mus2222" />
   </div>
   <div class="slide"2>
-   <img src="mus.jpg" class="image-slide" alt="mus3333" />
+   <img src="images/mus.jpg" class="image-slide" alt="mus3333" />
   </div>
 
   <a class="previous" onclick="changeSlide(-1)">&#10094;</a>
@@ -528,13 +491,13 @@ header("Location:userfreq.php");
 
   <div class="dots">
    <div class="col">
-    <img src="mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(1)" alt="mus1111">
+    <img src="images/mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(1)" alt="mus1111">
    </div>
    <div class="col">
-    <img src="mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(2)" alt="mus2222">
+    <img src="images/mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(2)" alt="mus2222">
    </div>
    <div class="col">
-    <img src="mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(3)" alt="mus3333">
+    <img src="images/mus.jpg" class="modal-preview hover-shadow" onclick="toSlide(3)" alt="mus3333">
    </div>
   </div>
  </div>
@@ -627,6 +590,35 @@ function showSlide(n) {
   modalPreviews[slideIndex - 1].className += ' active';
 }
 
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "sidetab") {
+    x.className += " responsive";
+  } else {
+    x.className = "sidetab";
+  }
+}
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) 
+    {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
 </script>
 
 
@@ -656,11 +648,11 @@ function showSlide(n) {
  </style>
 
  <?php 
-
+$contact = new contact;
   if(isset($_POST['submit'])){
-$Users = new Users;
-$int=$Users->number=$_POST["number"];
-$e=$Users->email=$_POST["email"];
+
+$int=$_POST["number"];
+$e=$_POST["email"];
 
 
  if (filter_var($e, FILTER_VALIDATE_EMAIL )) {
@@ -669,23 +661,24 @@ if (filter_var($int, FILTER_VALIDATE_INT)) {
 
  
 
-$Users->name=$_POST["name"];
-$Users->email=$_POST["email"];
-$Users->number=$_POST["number"];
-$Users->enrolled=$_POST["enrolled"];
-$Users->question=$_POST["question"];
+$contact->name=$_POST["name"];
+$contact->email=$_POST["email"];
+$contact->number=$_POST["number"];
+$contact->enrolled=$_POST["enrolled"];
+$contact->question=$_POST["question"];
 
-  $Users->contact();
-header("Location:about.php");  }
+  $contact->insertcontact();
+header("Location:about.php"); 
+ }
 
  else {
-    echo ('<script type="text/javascript">alert("  enter a valid email, nmber must be a numeric value")</script>');
+    echo ('<script type="text/javascript">alert("  enter a valid number must be a numeric value")</script>');
     header("Location:about.php");
 }
 
 }
 else{
-    echo ('<script type="text/javascript">alert("  enter a valid email, nmber must be a numeric value")</script>');
+    echo ('<script type="text/javascript">alert("  enter a valid email")</script>');
     header("Location:about.php");
 }
 }
