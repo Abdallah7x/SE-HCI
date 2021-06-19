@@ -1,9 +1,10 @@
 <?php
+error_reporting(0);
 REQUIRE_ONCE "../classes/users.php";
 $Users = new Users;
 session_start();
 $userid=$_SESSION['userID'];
-if($_POST && $_POST['password']==$_POST['conpass'])
+if($_POST && $_POST['password']==$_POST['conpass'] && filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
 { $result =$Users->updateUser($userid,$_POST['fname'],$_POST['mname'],$_POST['lname'],$_POST['email'],$_POST['phone'],$_POST['age']);
 $_SESSION["name"]=$_POST['fname']." ".$_POST['mname']." ".$_POST['lname'];
 header("Location: Admin.php");
@@ -35,13 +36,13 @@ header("Location: Admin.php");
 </div>
    <div class="tablev" style="top: 3px;left: 235px; width:100%; height:100%;">
 
-  <img src="bgimage.jpg" style="height:100%;" class="bgimage">
+  <img src="bgimage.jpg" style="height:150%; margin-left: -15px;margin-top: -15px;" class="bgimage">
   
-  <div class="opacity" style="width: 985px;top: 30px;left: 10%; height:97%;">
-    <div class="divideall"style="width: 985px;top: 150px;left: 252px; height:100%;">
+  <div class="opacity" style="width: 985px;top: 30px;left: 10%; height:130%; border-radius: 50px;">
+    <div class="divideall"style="width: 985px;top: 150px;left: 252px; height:300%;">
     <div style="width: 985px;top: 150px;left: 252px; height:100%;">
-      <p class="mistext" style="font-size: 30px;font-weight: bold;color:black;">Account Settings</p>
-  <form method="post" style="width: 985px;top: 150px;left: 252px; font-size: 20px;">
+      <p class="mistext" style="font-size: 30px;font-weight: bold;color:black; margin-left: 20px;">Account Settings</p>
+  <form method="post" style="width: 985px; height:300px;top: 150px;left: 252px; font-size: 20px;">
     <label for="fname">First name:</label><br>
     <input type="text" id="fname" name="fname" placeholder="Example" required><br>
     <label for="lname">Middle name:</label><br>
@@ -49,7 +50,7 @@ header("Location: Admin.php");
     <label for="fname">Last name:</label><br>
     <input type="text" id="fname" name="lname" placeholder="Example" required><br>
     <label for="lname">Phone number:</label><br>
-    <input type="text" id="lname" name="phone" placeholder="Example" required><br>
+    <input type="number" id="lname" name="phone" placeholder="Example" required><br>
     <label for="fname">Age:</label><br>
     <input type="text" id="fname" name="age" placeholder="Example"required><br>
     <label for="fname">Email:</label><br>
