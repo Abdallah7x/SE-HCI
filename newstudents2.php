@@ -1,3 +1,9 @@
+<?php
+error_reporting(0);
+include_once("../View/userView.php");
+$Userview = new ViewUsers;
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,67 +15,45 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 <title>Sharm El-Sheikh School - admission</title>
 </head>
-<body>
+<!-- <body>
   <div class="topnav" id="myTopnav">
-  <a href="index.html" style="float:left; "> <img src="logo.png" class="logo"></a>
+  <a href="index.html" style="float:left;"><img src="logo.png" class="logo"></a>
   <a href="login.php">Portal</a>
   <a href="admission-employment2.php" >Employment</a>
   <a href="newstudents2.php" id="active">Admission</a>
   <a href="#news">School Life</a>
-  <a href="#contact">News/Events</a>
-  <a href="about.html">About Us</a>
+  <a href="about.php">About Us</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
-    </a>
-  </div>
+  </a>
+  </div> -->
+  <?php
+  $Userview->navigation();
+  ?>
+
   <img src="bgimage.jpg" class="bgimage">
+
   <div class="opacity">
-
-
-
 
     <div class="divideall">
 
     <div id="left224">
-
-    <p class="admissiontext"><b>
-      Sharm El Sheikh College aims is to provide opportunities for a better future through providing students with the 21st Century skills and quality education that meets the needs of the community. Children come to an understanding that they live in a special unique place, and that they need to have tolerance for all.
-
-    </b></p>
+        <p class="admissionword">Admission</p>
+    <p class="admissiontext">
+         <b>Sharm El Sheikh College aims is to provide opportunities for a better future through providing students with the 21st Century skills and quality education that meets the needs of the community. Children come to an understanding that they live in a special unique place, and that they need to have tolerance for all.<br>
+        We at Sharm El Sheikh College find it our duty to nurture today’s children as they are tomorrow’s future. We instil in our children the love of seeking knowledge and the belief that it is an ongoing, never-ending process. We prepare them for the ever-changing world around us, encouraging them to become design thinkers and entrepreneurs within the expanding global community of the 21st Century. We can achieve this by instilling SSC’s Personal Core Values within our daily school life, assisting them to face the unknown and be ready for any unexpected circumstance. We also believe that fulfilling these goals should be a joint venture shared by both the School and the Parents.
+        </b>
+    </p>
     </div>
-
     <div class="form1">
-      <p class="mistext"><b>Admission<br><br>PLease fill the form below</b></p>
-  <form action="newstudents3.php">
-    <label class="label1" for="fname">First name:</label><br>
-    <input class="input1" type="text" id="fname" name="fname" placeholder="Example" required><br>
-    <label class="label1" for="lname">Middle name:</label><br>
-    <input class="input1" type="text" id="lname" name="mname" placeholder="Example" required><br>
-    <label class="label1" for="fname">Last name:</label><br>
-    <input class="input1" type="text" id="fname" name="lname" placeholder="Example" required><br>
-    <label class="label1" for="lname">Phone number:</label><br>
-    <input class="input1" type="text" id="lname" name="phoneNumer" placeholder="Example" required><br>
-    <label class="label1" for="fname">Age:</label><br>
-    <input class="input1" type="text" id="fname" name="age" placeholder="Example" required><br>
-    <b><input class="mission12" type="submit" value ="NEXT"></b>
-</form>
+    <p class="mistext">Please fill the form below</b></p>
+<?php
+$Userview->newStudent2();
+ ?>
     </div>
-
-
     </div>
-
-
-
-
-
-  </div>
-
-
-
-
-
-
+    </div>
 
   <script>
   function myFunction() {
